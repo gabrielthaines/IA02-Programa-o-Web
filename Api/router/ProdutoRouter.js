@@ -1,10 +1,12 @@
 const router = require('express').Router();
-const ProdutoController = require('../controller/ProdutoController.js');
+const ProdutoController = require('../Controller/ProdutoController.js');
+const { imageUpload } = require('../middleWare/imageUpload.js');
+const receberImagem = imageUpload.single('imagem');
 
-router.post('/create', ProdutoController.create);
+router.post('/create', receberImagem, ProdutoController.create);
 router.get('/getAll', ProdutoController.getAll);
 router.get('/getById/:id', ProdutoController.getById);
-router.patch('/update/:id', ProdutoController.update);
+router.patch('/update/:id', receberImagem, ProdutoController.update);
 router.delete('/delete/:id', ProdutoController.delete);
 
 module.exports = router;
