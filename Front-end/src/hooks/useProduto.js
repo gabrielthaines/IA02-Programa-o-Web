@@ -2,16 +2,30 @@ import api from '../util/api';
 
 function useProduto(){
     async function getAll() {
-        const response = await api.get('/prodtuo/getAll');
+        const response = await api.get('/Produto/getAll');
         return response.data;
     }
-    async function getById(id) {}
+
+    async function getById(id) {
+        const response = await api.get(`/Produto/getById/${id}`);
+        return response.data;
+    }
+
+
     async function create(produto){
-        const response = await api.post('/produto/create', produto);
+        const response = await api.post('/Produto/create', produto);
         return response.data;
     }
-    async function update(id, produto){}
-    async function remove(id){}
+
+    async function update(id, produto){
+        const response = await api.patch(`/Produto/update/${id}`, produto);
+        return response.data;
+    }
+
+    async function remove(id){
+        const response = await api.delete(`/Produto/delete/${id}`);
+        return response.data;
+    }
 
     return {getAll, getById, create, update, remove, };
 }
