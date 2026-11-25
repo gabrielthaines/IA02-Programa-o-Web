@@ -12,7 +12,12 @@ app.use(cors({Credentials: true, origin: '*'}));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 const ProdutoRouter = require('./router/ProdutoRouter.js');
+require('./model/associacoes.js');
+const CarrinhoRouter = require('./router/CarrinhoRouter.js');
+const VendaRouter = require('./router/VendaRouter.js');
 app.use('/Produto', ProdutoRouter);
+app.use('/Carrinho', CarrinhoRouter);
+app.use('/Venda', VendaRouter);
 
 app.use((err, req, res, next) => {
     if (err instanceof FormatoImagemInvalido) {
